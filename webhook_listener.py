@@ -1,6 +1,9 @@
 from flask import Flask, request
 import json
 
+# Servlet to listen for Docker Hub based webhook
+# and rotate a new docker image into production
+
 webhook_app = Flask(__name__)
 
 
