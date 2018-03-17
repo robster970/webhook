@@ -20,8 +20,8 @@ def foo():
         print('Match for repo_url: ', repo_url)
         print('Match for repo_name: ', repo_name)
         print('Match for tag: ', tag)
-        # os.system('./sierra_docker_update.sh')
-        os.system('./sierra_docker_test.sh')
+        os.system('./sierra_docker_update.sh')
+        # os.system('./sierra_docker_test.sh')
     else:
         print('Partial or no match: ', notification_data)
 
