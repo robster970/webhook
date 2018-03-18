@@ -1,9 +1,11 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, jsonify
 import re
 import os
 
-# Servlet to listen for Docker Hub based webhook
-# and rotate a new docker image into production
+# Flask based servlet to listen for Docker Hub webhook indicating a
+# new container has been built in Travis.
+# Rotate a new docker image into production,
+# clean up local filesystem of redundant docker images and containers
 
 webhook_app = Flask(__name__)
 
@@ -24,10 +26,10 @@ def webhook():
             print('Match for tag: ', tag)
             os.system('./sierra_docker_update.sh')
             # os.system('./sierra_docker_test.sh')
-            return '', 200
+            return jsonify({'status': 'success'}), 200
         else:
             print('Partial or no match, JSON: ', notification_data)
-            return '', 403
+            return jsonify({'status': 'forbidden'}), 403
     else:
         abort(400)
 
