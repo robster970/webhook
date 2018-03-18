@@ -1,4 +1,5 @@
 from flask import Flask, request
+import json
 import re
 import os
 
@@ -13,6 +14,8 @@ def foo():
     repo_url = 'https://hub.docker.com/r/robster970/sierra-nginx'
     repo_name = 'robster970/sierra-nginx'
     tag = 'latest'
+    received_json_data=json.loads(request.body)
+    print(received_json_data)
     notification_data = str(request.data)
     print("Response from /notification endpoint")
     if re.search(repo_url, notification_data) and re.search(repo_name,
