@@ -14,7 +14,7 @@ def foo():
     repo_url = 'https://hub.docker.com/r/robster970/sierra-nginx'
     repo_name = 'robster970/sierra-nginx'
     tag = 'latest'
-    received_json_data=json.loads(request.body)
+    received_json_data=json.loads(request.data)
     print(received_json_data)
     notification_data = str(request.data)
     print("Response from /notification endpoint")
